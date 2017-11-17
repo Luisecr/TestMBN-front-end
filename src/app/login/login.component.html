@@ -1,0 +1,27 @@
+<div align="center">
+  <mat-card align="center" style="width: 30%;">
+    <mat-card-title  style="width: 100%;">Formulario login</mat-card-title>
+    <form [formGroup]="userForm" novalidate>
+      <div style="width: 100%;">
+        <mat-form-field  style="width: 100%;">
+          <input matInput placeholder="Nombre:" formControlName="nombreUsuario">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field  style="width: 100%;">
+          <input matInput placeholder="Correo:" formControlName="correo">
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-raised-button color="primary"  style="width: 100%;" (click)="add(userForm); userForm.nombre_usuario = ''">Ingresar</button>
+      </div>
+         <p>Form value: {{ userForm.value | json }}</p>
+      <p>Form status: {{ userForm.status | json }}</p>
+      <mat-card *ngFor="let usuario of usuarios">
+        <span class="badge">{{usuario.usuarioId}}</span> 
+        <span>{{usuario.nombreUsuario}}</span>
+      </mat-card>
+        
+    </form>
+  </mat-card>
+</div>
