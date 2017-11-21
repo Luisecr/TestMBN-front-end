@@ -18,14 +18,15 @@ import 'hammerjs';
 import {HttpModule} from '@angular/http';
 //components
 import { LoginComponent } from './login/login.component';
-
+import { TechComponent } from './tech/tech.component';
 //Services
 import { UsuarioService } from './services/usuario.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    TechComponent
   ],
   imports: [
     BrowserModule,

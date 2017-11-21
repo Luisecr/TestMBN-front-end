@@ -17,9 +17,25 @@ export class UsuarioService{
     constructor(
         private http : Http
     ){}
-
+    getUsuarios(): Promise<Usuario[]>{
+        return this.http.get(this.usuariosUrl)
+                   .toPromise()
+                    .then(response => response.json()._embedded.usuarios as Usuario[])
+                    .catch(this.handleError);
+    }
+    getUsuario(id: number): Promise<Usuario> {
+        const url = `${this.usuariosUrl}/${id}`;
+        console.log(url);
+        return this.http.get(url)
+        .toPromise()
+        .then(
+            response => response.json() as Usuario 
+        )
+        .catch(this.handleError);
+        
+    }
     create(formUser: FormGroup): Promise<Usuario> {
-        console.log("Entró service");
+
         return this.http
           .post(this.usuariosUrl, formUser.value, {headers: this.headers})
           .toPromise()
