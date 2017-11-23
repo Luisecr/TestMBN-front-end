@@ -1,0 +1,7 @@
+.mat-raised-button, .mat-accent, .mat-raised-button, .mat-button-wrapper, .mat-button-ripple, .mat-ripple{
+    display: none;
+}
+
+section{
+    display: none;
+}
