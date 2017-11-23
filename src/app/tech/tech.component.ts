@@ -22,11 +22,6 @@ export class TechComponent implements OnInit {
     private tecnologiasSelected: Tecnologia[];
     private tecnologiasSettings: {};
 
-    // Plugin
-    dropdownList = [];
-    selectedItems = [];
-    dropdownSettings = {};
-
     constructor(
         private route: ActivatedRoute,
         private usuarioService: UsuarioService,
@@ -41,32 +36,6 @@ export class TechComponent implements OnInit {
             });
         this.getTecnologias();
 
-        this.dropdownList = [
-            { 'id': 1, 'itemName': 'India' },
-            { 'id': 2, 'itemName': 'Singapore' },
-            { 'id': 3, 'itemName': 'Australia' },
-            { 'id': 4, 'itemName': 'Canada' },
-            { 'id': 5, 'itemName': 'South Korea' },
-            { 'id': 6, 'itemName': 'Germany' },
-            { 'id': 7, 'itemName': 'France' },
-            { 'id': 8, 'itemName': 'Russia' },
-            { 'id': 9, 'itemName': 'Italy' },
-            { 'id': 10, 'itemName': 'Sweden' }
-        ];
-        this.selectedItems = [
-            { 'id': 2, 'itemName': 'Singapore' },
-            { 'id': 3, 'itemName': 'Australia' },
-            { 'id': 4, 'itemName': 'Canada' },
-            { 'id': 5, 'itemName': 'South Korea' }
-        ];
-        this.dropdownSettings = {
-            singleSelection: false,
-            text: 'Select Countries',
-            selectAllText: 'Select All',
-            unSelectAllText: 'UnSelect All',
-            enableSearchFilter: true,
-            classes: 'myclass custom-class'
-        };
         this.tecnologiasSettings = {
             singleSelection: false,
             text: 'Seleccionar tecnologias',
@@ -82,15 +51,36 @@ export class TechComponent implements OnInit {
         this.tecnologiaService.getTecnologias()
             .then(tecnologias => {
                 this.tecnologias = tecnologias;
+                const len = this.tecnologias.length;
+                for (let i = 0; i < len; i += 1 ) {
+                    const id = 'id';
+                    const itemName = 'itemName';
+                    this.tecnologias[i][id] = this.tecnologias[i].tecnologiaId;
+                    this.tecnologias[i][itemName] = this.tecnologias[i].nombreTecnologia;
+                }
+                console.log(this.tecnologias);
             });
-        const data = JSON.stringify(this.tecnologias);
-        console.log(data);
     }
 
     saveTechs(): void {
         console.log('Guardando tecnologias...');
         console.log(this.tecnologiasSelected);
         console.log('Despues...');
+        this.cleanTechsJSON();
+    }
+
+    cleanTechsJSON(): void {
+        console.log('Tecnologias antes...');
+        console.log(this.tecnologiasSelected);
+        if ( this.tecnologiasSelected.length > 0 ) {
+            console.log('Dentro if');
+            for (let i = 0; i < this.tecnologiasSelected.length; i++) {
+                delete this.tecnologiasSelected[i]['id'];
+                delete this.tecnologiasSelected[i]['itemName'];
+            }
+        }
+        console.log('Tecnologias después...');
+        console.log(this.tecnologiasSelected);
     }
 
     onItemSelect(item: any) {
