@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { RespuestaService } from '../services/respuesta.service';
+
+import { Tecnologia } from '../entities/tecnologia';
 
 @Component({
   selector: 'app-cuestionario',
@@ -8,11 +10,16 @@ import { RespuestaService } from '../services/respuesta.service';
 })
 export class CuestionarioComponent implements OnInit {
 
+  @Input() tecnologias: Tecnologia[];
+
   constructor(
     private respuestaService: RespuestaService
   ) { }
 
   ngOnInit() {
+      if ( this.tecnologias != null ) {
+          console.log('En cuestionario: ', this.tecnologias );
+      }
   }
 
   exampleSchema = {

@@ -3,7 +3,7 @@
         Bienvenido {{usuario.nombreUsuario}}
     </div>
 </mat-card>
-<mat-card>
+<mat-card *ngIf="!seleccionadas">
     <mat-card-title style="width: 100%;">Listado de tecnologias</mat-card-title>
     <div style="width: 96%;">
         <angular2-multiselect [data]="tecnologias" 
@@ -20,3 +20,9 @@
     <br>
     <button mat-raised-button color="primary" style="width: 100%;" (click)="saveTechs();">Guardar</button>
 </mat-card>
+<mat-card *ngIf="!seleccionadas">
+    <button mat-raised-button color="primary" style="width: 100%;" (click)="activeCuestionario();">Siguiente</button>
+</mat-card>
+<div *ngIf="seleccionadas">
+    <app-cuestionario [tecnologias]="tecnologiasSelected"></app-cuestionario>
+</div>

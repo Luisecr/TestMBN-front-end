@@ -1,5 +1,5 @@
 import { Input, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Location, AsyncPipe } from '@angular/common';
 
 import { UsuarioService } from '../services/usuario.service';
@@ -21,15 +21,18 @@ export class TechComponent implements OnInit {
     private tecnologias: Tecnologia[];
     private tecnologiasSelected: Tecnologia[];
     private tecnologiasSettings: {};
+    private seleccionadas: boolean;
 
     constructor(
         private route: ActivatedRoute,
         private usuarioService: UsuarioService,
         private location: Location,
-        private tecnologiaService: TecnologiaService
+        private tecnologiaService: TecnologiaService,
+        private router: Router
     ) { }
 
     ngOnInit() {
+        this.seleccionadas = false;
         this.route.paramMap.switchMap((params: ParamMap) => this.usuarioService.getUsuario(+params.get('id')))
             .subscribe(usuario => {
                 this.usuario = usuario;
@@ -66,7 +69,6 @@ export class TechComponent implements OnInit {
         console.log('Guardando tecnologias...');
         console.log(this.tecnologiasSelected);
         console.log('Despues...');
-        this.cleanTechsJSON();
     }
 
     cleanTechsJSON(): void {
@@ -81,6 +83,11 @@ export class TechComponent implements OnInit {
         }
         console.log('Tecnologias después...');
         console.log(this.tecnologiasSelected);
+    }
+
+    activeCuestionario(): void {
+        this.seleccionadas = true;
+        this.cleanTechsJSON();
     }
 
     onItemSelect(item: any) {
