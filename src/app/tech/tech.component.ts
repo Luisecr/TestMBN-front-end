@@ -61,14 +61,7 @@ export class TechComponent implements OnInit {
                     this.tecnologias[i][id] = this.tecnologias[i].tecnologiaId;
                     this.tecnologias[i][itemName] = this.tecnologias[i].nombreTecnologia;
                 }
-                console.log(this.tecnologias);
             });
-    }
-
-    saveTechs(): void {
-        console.log('Guardando tecnologias...');
-        console.log(this.tecnologiasSelected);
-        console.log('Despues...');
     }
 
     cleanTechsJSON(): void {
