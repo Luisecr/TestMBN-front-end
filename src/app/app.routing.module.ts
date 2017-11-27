@@ -4,7 +4,6 @@ import { LoginComponent } from './login/login.component';
 import { TechComponent } from './tech/tech.component';
 import {CuestionarioComponent} from './cuestionario/cuestionario.component';
 
-
 const routes: Routes = [
         {
           path: 'login',

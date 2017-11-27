@@ -17,8 +17,6 @@ export class RespuestaService {
     ) { }
 
     create(respuesta): Promise<Respuesta> {
-        console.log("Registrando respuesta====>");
-        console.log(respuesta);
         return this.http
             .post(this.respuestasUrl, respuesta, { headers: this.headers })
             .toPromise()
@@ -26,7 +24,7 @@ export class RespuestaService {
             .catch(this.handleError);
     }
     private handleError(error: any): Promise<any> {
-        console.error('An error occurred', error); // for demo purposes only
+        //console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
     }
 }

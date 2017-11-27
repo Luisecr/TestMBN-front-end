@@ -11,18 +11,33 @@ import { Tecnologia } from '../entities/tecnologia';
 export class CuestionarioComponent implements OnInit {
 
   @Input() tecnologias: Tecnologia[];
+  @Input() usuarioId: number;
+  dataSaved: boolean;
 
   constructor(
     private respuestaService: RespuestaService
   ) { }
 
   ngOnInit() {
-      if ( this.tecnologias != null ) {
-          console.log('En cuestionario: ', this.tecnologias );
+    this.dataSaved = false;
+    if (this.tecnologias != null && this.usuarioId != null) {
+      for (var i = 0; i < this.tecnologias.length; i++) {
+        var cuestionario = { usuarioId: null, tecnologiaId: null };
+        cuestionario.usuarioId = this.usuarioId;
+        cuestionario.tecnologiaId = this.tecnologias[i];
+        this.jsonObjectForm.respuestas.push(cuestionario);
+        //RESULTADO
+        //{ "usuarioId": 1, "tecnologiaId": { "tecnologiaId": 5, "nombreTecnologia": "Java EE" } }
       }
+    }
   }
 
-  exampleSchema = {
+  jsonObjectForm = {
+    respuestas: [
+    ]
+  };
+
+  schemaForm = {
     "type": "object",
     "properties": {
       "respuestas": {
@@ -51,7 +66,7 @@ export class CuestionarioComponent implements OnInit {
     }
   };
 
-  exampleLayout = [
+  layoutForm = [
     {
       "key": "respuestas",
       "type": "array",
@@ -78,51 +93,57 @@ export class CuestionarioComponent implements OnInit {
     }
   ];
 
-  exampleJsonObject = {
-    "respuestas": [
-      { "usuarioId": 1, "tecnologiaId": { "tecnologiaId": 5, "nombreTecnologia": "Java EE" } }
-      //{ "usuarioId": 1, "tecnologiaId": { "tecnologiaId": 6, "nombreTecnologia": "Java" } },
-      //{ "usuarioId": 1, "tecnologiaId": { "tecnologiaId": 7, "nombreTecnologia": "CSS" } },
-    ]
-  };
-
-
-  /*exampleSchema = {
-    "type": "object",
-    "properties": {
-      "cuestionario": { "type": "string" },
-      "conocimiento_teorico_div": { "type": "string" },
-      "teorico": { "type": "number" },
-      "conocimiento_practico_div": { "type": "string" },
-      "practico": { "type": "number" },
-      "conocimiento_aplicado_div": { "type": "string" },
-      "proyecto": { "type": "number" },
-      "usuarioId": { "type": "number" },
-      "tecnologiaId": { "type": "number" }
-    }
-  };*/
-
-  /*exampleLayout = [
-    { "key": "cuestionario", "type": "div", title: 'Tecnología: Angular2' },
-    { "key": "conocimiento_teorico_div", "type": "section", title: 'Conocimiento teórico' },
-    { "key": "teorico", "type": "range" },
-    { "key": "conocimiento_practico_div", "type": "section", title: 'Conocimiento práctico' },
-    { "key": "practico", "type": "range" },
-    { "key": "conocimiento_aplicado_div", "type": "section", title: 'Porcentaje aplicado en proyecto real' },
-    { "key": "proyecto", "type": "range" },
-    { "key": "usuarioId", "type": "number", "condition": "false"},
-    { "key": "tecnologiaId", "type": "number", "condition": "false"},
-    { type: 'submit', title: 'Guardar' },
-  ];*/
-
-  //exampleJsonObject = { usuarioId: 1, tecnologiaId: 5 };
-  //[(ngModel)]="exampleJsonObject"
-
-  exampleOnSubmitFn(formData) {
+  saveForm(formData) {
     console.log("Datos a enviar===>");
-    console.log(formData.respuestas[0]);
-    this.respuestaService.create(formData.respuestas[0]).then(respuesta => { console.log(respuesta); });
+    console.log(formData);
+
+    if (formData.respuestas != undefined) {
+      var respuestasLength = formData.respuestas.length;
+      for (var i = 0; i < respuestasLength; i++) {
+        console.log("Solicitud: " + i);
+
+        this.respuestaService.create(formData.respuestas[i]).
+          then(respuesta => { console.log("Exito: "); this.dataSaved = true; }).
+          catch(respuesta => { console.log("Error con: " + respuesta); this.dataSaved = false });
+      }
+    }
+
   };
+
+
+  /*
+    exampleSchema = {
+      "type": "object",
+      "properties": {
+        "cuestionario": { "type": "string" },
+        "conocimiento_teorico_div": { "type": "string" },
+        "teorico": { "type": "number" },
+        "conocimiento_practico_div": { "type": "string" },
+        "practico": { "type": "number" },
+        "conocimiento_aplicado_div": { "type": "string" },
+        "proyecto": { "type": "number" },
+        "usuarioId": { "type": "number" },
+        "tecnologiaId": { "type": "number" }
+      }
+    };
+  
+    exampleLayout = [
+      { "key": "cuestionario", "type": "div", title: 'Tecnología: Angular2' },
+      { "key": "conocimiento_teorico_div", "type": "section", title: 'Conocimiento teórico' },
+      { "key": "teorico", "type": "range" },
+      { "key": "conocimiento_practico_div", "type": "section", title: 'Conocimiento práctico' },
+      { "key": "practico", "type": "range" },
+      { "key": "conocimiento_aplicado_div", "type": "section", title: 'Porcentaje aplicado en proyecto real' },
+      { "key": "proyecto", "type": "range" },
+      { "key": "usuarioId", "type": "number", "condition": "false"},
+      { "key": "tecnologiaId", "type": "number", "condition": "false"},
+      { type: 'submit', title: 'Guardar' },
+    ];
+  
+    exampleJsonObject = 
+    [
+    { usuarioId: 1, tecnologiaId: 5 }
+    ];*/
 
 
 

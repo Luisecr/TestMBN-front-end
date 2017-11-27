@@ -6,10 +6,9 @@ import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './app.material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-// Animations
+//Animations
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// Routing
+//Routing
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app.routing.module';
 import { MatNativeDateModule } from '@angular/material';
