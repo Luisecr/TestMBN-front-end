@@ -21,5 +21,6 @@
     <button mat-raised-button color="primary" style="width: 100%;" (click)="activeCuestionario();">Siguiente</button>
 </mat-card>
 <div *ngIf="seleccionadas">
-    <app-cuestionario [tecnologias]="tecnologiasSelected" [usuarioId]="usuario.usuarioId"></app-cuestionario>
+    <!--app-cuestionario [tecnologias]="tecnologiasSelected" [usuarioId]="usuario.usuarioId"></app-cuestionario-->
+    <app-questionnaire [tecnologias]="tecnologiasSelected" [usuarioId]="usuario.usuarioId"></app-questionnaire>
 </div>

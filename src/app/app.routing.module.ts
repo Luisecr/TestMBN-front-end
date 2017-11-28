@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { TechComponent } from './tech/tech.component';
-import {CuestionarioComponent} from './cuestionario/cuestionario.component';
+import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 
 const routes: Routes = [
         {
@@ -10,8 +10,8 @@ const routes: Routes = [
           component: LoginComponent
         },
         {
-          path: 'cuestionario',
-          component: CuestionarioComponent
+          path: 'questionnaire',
+          component: QuestionnaireComponent
         },
         {
           path: 'tech/:id',
