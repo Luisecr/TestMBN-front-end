@@ -44,6 +44,7 @@ export class UsuarioService {
     }
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error); // for demo purposes only
+        console.log(error =error.json());
         return Promise.reject(error.message || error);
     }
 }

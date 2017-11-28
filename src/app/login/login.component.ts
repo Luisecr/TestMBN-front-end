@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   userForm: FormGroup;
   usuarios: Usuario[];
   Usuario: Usuario;
-   
+  loginError: boolean;
   constructor(
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
@@ -39,8 +39,8 @@ export class LoginComponent implements OnInit {
     console.log("entró!");
     this.usuarioService.create(userForm)
       .then(usuario => {
-        this.router.navigate(['/tech', usuario.usuarioId])}
-      );
+        this.router.navigate(['/tech', usuario.usuarioId])
+      }).catch(res=>this.loginError=true);
       
   }
   gotoTech(): void {

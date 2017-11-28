@@ -4,6 +4,9 @@
     <div class="alert alert-info" role="alert" [hidden]="!questionnaireService.showMessage">
       <strong>Cuestionario completado!</strong><br> Gracias por tu tiempo.
     </div>
+    <div class="alert alert-warning" role="alert" [hidden]="!loginError">
+      <strong>El correo que ingresaste ya esta registrado!</strong>
+    </div>
     <form [formGroup]="userForm" novalidate>
       <div style="width: 100%;">
         <mat-form-field style="width: 100%;">
