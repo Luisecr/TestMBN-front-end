@@ -1,25 +1,35 @@
-<mat-card>
+<!--mat-card>
     <div *ngIf="usuario">
         Bienvenido {{usuario.nombreUsuario}}
     </div>
-</mat-card>
-<mat-card *ngIf="!seleccionadas">
-    <mat-card-title style="width: 100%;">Listado de tecnologias</mat-card-title>
-    <div style="width: 96%;">
-        <angular2-multiselect [data]="tecnologias" 
-        [(ngModel)]="tecnologiasSelected" [settings]="tecnologiasSettings" 
-        (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)"
-        (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)">
-        <c-item>
-            <ng-template let-item="item">
-                <label>{{item.itemName}}</label>
-            </ng-template>
-        </c-item>
-        </angular2-multiselect>
-    </div>
+</mat-card-->
+
+<div class="container">
+    <mat-card>
+        <div class="page-header" div *ngIf="usuario">
+            <h3>
+                Bienvenido: {{usuario.nombreUsuario | uppercase}}
+            </h3>
+        </div>
+    </mat-card>
     <br>
-    <button mat-raised-button color="primary" style="width: 100%;" (click)="activeCuestionario();">Siguiente</button>
-</mat-card>
+
+    <mat-card *ngIf="!seleccionadas">
+        <mat-card-title style="width: 100%;">Listado de tecnologias</mat-card-title>
+        <div style="width: 96%;">
+            <angular2-multiselect [data]="tecnologias" [(ngModel)]="tecnologiasSelected" [settings]="tecnologiasSettings" (onSelect)="onItemSelect($event)"
+                (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)">
+                <c-item>
+                    <ng-template let-item="item">
+                        <label>{{item.itemName}}</label>
+                    </ng-template>
+                </c-item>
+            </angular2-multiselect>
+        </div>
+        <br>
+        <button mat-raised-button color="primary" style="width: 100%;" (click)="activeCuestionario();">Siguiente</button>
+    </mat-card>
+</div>
 <div *ngIf="seleccionadas">
     <!--app-cuestionario [tecnologias]="tecnologiasSelected" [usuarioId]="usuario.usuarioId"></app-cuestionario-->
     <app-questionnaire [tecnologias]="tecnologiasSelected" [usuarioId]="usuario.usuarioId"></app-questionnaire>

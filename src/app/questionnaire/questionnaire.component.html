@@ -1,37 +1,32 @@
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="margin-20">
-        <h4>Califique su conocimiento en cada una de las tecnologías: </h4>
-      </div>
-      <div class="alert alert-danger" role="alert" [hidden]="dataSaved">
-        <strong>Error: </strong> Ocurrió un error al guardar los datos, contacte al administrador del sistema.
-      </div>
-      <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value.respuestas)">
+  <mat-card>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="margin-20">
+          <h4>
+            <strong>Instrucciones: </strong>Califique su conocimiento en cada una de las tecnologías.</h4>
+        </div>
+        <div class="alert alert-danger" role="alert" [hidden]="dataSaved">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <strong>Error: </strong> Ocurrió un error al guardar los datos, contacte al administrador del sistema.
+        </div>
+        <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value.respuestas)">
 
-        <!--respuestas-->
-        <div formArrayName="respuestas">
-          <div *ngFor="let respuesta of myForm.controls.respuestas.controls; let i=index" class="panel panel-default">
-            <div class="panel-heading">
-              <span>{{myForm.value.respuestas[i].tecnologiaId.nombreTecnologia}}</span>
-              <!--span class="glyphicon glyphicon-remove pull-right" *ngIf="myForm.controls.respuestas.controls.length > 1" (click)="removeAddress(i)"></span-->
-            </div>
-            <div class="panel-body" [formGroupName]="i">
-              <div class="form-group col-xs-12">
-                <label>Conocimiento teórico: {{myForm.value.respuestas[i].teorico}}</label>
-                <div>
-                  <p style="float: left;">
-                    0
-                  </p>
-                  <p style="float: right;">
-                    10
-                  </p>
-                </div>
-                <input type="range" name="points" min="0" max="10" formControlName="teorico">
+          <!--respuestas-->
+          <div formArrayName="respuestas">
+            <div *ngFor="let respuesta of myForm.controls.respuestas.controls; let i=index" class="panel panel-primary">
+              <div class="panel-heading">
+                <span>
+                  <strong>{{myForm.value.respuestas[i].tecnologiaId.nombreTecnologia | uppercase}}</strong>
+                </span>
+                <!--span class="glyphicon glyphicon-remove pull-right" *ngIf="myForm.controls.respuestas.controls.length > 1" (click)="removeAddress(i)"></span-->
               </div>
-              <div class="form-group col-xs-12">
-                <label>Conocimiento práctico: {{myForm.value.respuestas[i].practico}}</label>
-                <div>
+              <div class="panel-body" [formGroupName]="i">
+                <div class="form-group col-xs-12">
+                  <label>Conocimiento teórico: </label>
+                  <!--div>
                   <p style="float: left;">
                     0
                   </p>
@@ -39,11 +34,15 @@
                     10
                   </p>
                 </div>
-                <input type="range" name="points" min="0" max="10" formControlName="practico">
-              </div>
-              <div class="form-group col-xs-12">
-                <label>Conocimiento aplicado en proyecto real: {{myForm.value.respuestas[i].proyecto}}</label>
-                <div>
+                <input type="range" name="points" min="0" max="10" formControlName="teorico"-->
+                  <div class="range range-primary">
+                    <input type="range" name="range" min="0" max="10" formControlName="teorico">
+                    <output id="rangePrimary">{{myForm.value.respuestas[i].teorico}}</output>
+                  </div>
+                </div>
+                <div class="form-group col-xs-12">
+                  <label>Conocimiento práctico: </label>
+                  <!--div>
                   <p style="float: left;">
                     0
                   </p>
@@ -51,28 +50,49 @@
                     10
                   </p>
                 </div>
-                <input type="range" name="points" min="0" max="10" formControlName="proyecto">
+                <input type="range" name="points" min="0" max="10" formControlName="practico"-->
+                  <div class="range range-primary">
+                    <input type="range" name="range" min="0" max="10" formControlName="practico">
+                    <output id="rangePrimary">{{myForm.value.respuestas[i].practico}}</output>
+                  </div>
+                </div>
+                <div class="form-group col-xs-12">
+                  <label>Conocimiento aplicado en proyecto real:</label>
+                  <!--div>
+                  <p style="float: left;">
+                    0
+                  </p>
+                  <p style="float: right;">
+                    10
+                  </p>
+                </div>
+                <input type="range" name="points" min="0" max="10" formControlName="proyecto"-->
+                  <div class="range range-primary">
+                    <input type="range" name="range" min="0" max="10" formControlName="proyecto">
+                    <output id="rangePrimary">{{myForm.value.respuestas[i].proyecto}}</output>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="margin-20" style="margin-bottom: 10%;">
-          <!--button type="submit" class="btn btn-primary pull-right" [disabled]="!myForm.valid">Submit</button-->
-          <button type="submit" class="mat-raised-button mat-primary" style="width: 100%;">
-            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
-            Guardar
-          </button>
-        </div>
-        <!--div class="clearfix"></div-->
+          <div class="margin-20">
+            <!--button type="submit" class="btn btn-primary pull-right" [disabled]="!myForm.valid">Submit</button-->
+            <button type="submit" class="mat-raised-button mat-primary" style="width: 100%;">
+              <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+              Guardar
+            </button>
+          </div>
+          <!--div class="clearfix"></div-->
 
-        <!--div class="margin-20">
+          <!--div class="margin-20">
           <div>myForm details:-</div>
           <pre>Is myForm valid?: <br>{{myForm.valid | json}}</pre>
           <pre>form value: <br>{{myForm.value | json}}</pre>
         </div-->
 
-      </form>
+        </form>
+      </div>
     </div>
-  </div>
+  </mat-card>
 </div>
