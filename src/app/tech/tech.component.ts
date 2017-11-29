@@ -50,7 +50,7 @@ export class TechComponent implements OnInit {
             enableSearchFilter: true,
             searchPlaceholderText: 'Buscar tecnologia',
             classes: ''
-        }
+        };
     }
 
     getTecnologias(): void {
