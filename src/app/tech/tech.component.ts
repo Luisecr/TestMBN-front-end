@@ -22,6 +22,7 @@ export class TechComponent implements OnInit {
     private tecnologiasSelected: Tecnologia[];
     private tecnologiasSettings: {};
     private seleccionadas: boolean;
+    private vacio: boolean;
 
     constructor(
         private route: ActivatedRoute,
@@ -33,6 +34,8 @@ export class TechComponent implements OnInit {
 
     ngOnInit() {
         this.seleccionadas = false;
+        this.vacio = true;
+
         this.route.paramMap.switchMap((params: ParamMap) => this.usuarioService.getUsuario(+params.get('id')))
             .subscribe(usuario => {
                 this.usuario = usuario;
@@ -47,7 +50,7 @@ export class TechComponent implements OnInit {
             enableSearchFilter: true,
             searchPlaceholderText: 'Buscar tecnologia',
             classes: ''
-        };
+        }
     }
 
     getTecnologias(): void {
@@ -65,17 +68,12 @@ export class TechComponent implements OnInit {
     }
 
     cleanTechsJSON(): void {
-        console.log('Tecnologias antes...');
-        console.log(this.tecnologiasSelected);
         if ( this.tecnologiasSelected.length > 0 ) {
-            console.log('Dentro if');
             for (let i = 0; i < this.tecnologiasSelected.length; i++) {
                 delete this.tecnologiasSelected[i]['id'];
                 delete this.tecnologiasSelected[i]['itemName'];
             }
         }
-        console.log('Tecnologias después...');
-        console.log(this.tecnologiasSelected);
     }
 
     activeCuestionario(): void {
@@ -83,16 +81,28 @@ export class TechComponent implements OnInit {
         this.cleanTechsJSON();
     }
 
+    isEmpty() {
+        return this.vacio;
+    }
+
     onItemSelect(item: any) {
-        console.log(item);
+        this.vacio = false;
+        // console.log(item);
     }
     OnItemDeSelect(item: any) {
-        console.log(item);
+        if ( this.tecnologiasSelected.length > 0 ) {
+            this.vacio = false;
+        } else {
+            this.vacio = true;
+        }
+        // console.log(item);
     }
     onSelectAll(items: any) {
-        console.log(items);
+        this.vacio = false;
+        // console.log(items);
     }
     onDeSelectAll(items: any) {
-        console.log(items);
+        this.vacio = true;
+        // console.log(items);
     }
 }

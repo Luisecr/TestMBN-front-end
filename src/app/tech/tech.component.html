@@ -5,7 +5,7 @@
 </mat-card>
 <mat-card *ngIf="!seleccionadas">
     <mat-card-title style="width: 100%;">Listado de tecnologias</mat-card-title>
-    <div style="width: 96%;">
+    <div style="width: 100%;">
         <angular2-multiselect [data]="tecnologias" 
         [(ngModel)]="tecnologiasSelected" [settings]="tecnologiasSettings" 
         (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)"
@@ -18,7 +18,7 @@
         </angular2-multiselect>
     </div>
     <br>
-    <button mat-raised-button color="primary" style="width: 100%;" (click)="activeCuestionario();">Siguiente</button>
+    <button mat-raised-button color="primary" style="width: 100%;" [disabled]="isEmpty()" (click)="activeCuestionario();">Siguiente</button>
 </mat-card>
 <div *ngIf="seleccionadas">
     <!--app-cuestionario [tecnologias]="tecnologiasSelected" [usuarioId]="usuario.usuarioId"></app-cuestionario-->
