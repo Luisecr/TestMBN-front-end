@@ -2,7 +2,14 @@
   <mat-card align="center" style="width: 30%;">
     <mat-card-title style="width: 100%;">Formulario MBN</mat-card-title>
     <div class="alert alert-info" role="alert" [hidden]="!questionnaireService.showMessage">
-      <strong>Cuestionario completado!</strong><br> Gracias por tu tiempo.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <strong>Cuestionario completado!</strong>
+      <br> Gracias por tu tiempo.
+    </div>
+    <div class="alert alert-warning" role="alert" [hidden]="!loginError">
+      <strong>El correo que ingresaste ya esta registrado!</strong>
     </div>
     <form [formGroup]="userForm" novalidate>
       <div style="width: 100%;">
@@ -18,7 +25,7 @@
       <div>
         <button mat-raised-button color="primary" style="width: 100%;" (click)="add(userForm); userForm.nombre_usuario = ''">Ingresar</button>
       </div>
-     <!--  <p>Form value: {{ userForm.value | json }}</p>
+      <!--  <p>Form value: {{ userForm.value | json }}</p>
       <p>Form status: {{ userForm.status | json }}</p>
       <mat-card *ngFor="let usuario of usuarios">
         <span class="badge">{{usuario.usuarioId}}</span>
