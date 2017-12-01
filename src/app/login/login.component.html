@@ -1,5 +1,5 @@
 <div align="center">
-  <mat-card align="center" style="width: 30%;">
+  <mat-card align="center" style="width: 70%;">
     <mat-card-title style="width: 100%;">Formulario MBN</mat-card-title>
     <div class="alert alert-info" role="alert" [hidden]="!questionnaireService.showMessage">
       <strong>Cuestionario completado!</strong><br> Gracias por tu tiempo.
@@ -20,7 +20,7 @@
         </mat-form-field>
       </div>
       <div>
-        <button mat-raised-button color="primary" [disabled]="!userForm.valid" style="width: 100%;" (click)="add(userForm); userForm.nombre_usuario = ''">Ingresar</button>
+        <button mat-raised-button color="primary" [disabled]="!userForm.valid" style="width: 100%;" (click)="add(userForm);">Ingresar</button>
       </div>
      <!--  <p>Form value: {{ userForm.value | json }}</p>
       <p>Form status: {{ userForm.status | json }}</p>

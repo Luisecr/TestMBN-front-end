@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class RespuestaService {
-    private respuestasUrl = 'http://localhost:8080/respuestas';
+    private respuestasUrl = 'https://tech-back-mbn.herokuapp.com/respuestas';
     private console: Console;
     private headers = new Headers({ 'Content-Type': 'application/json' })
 

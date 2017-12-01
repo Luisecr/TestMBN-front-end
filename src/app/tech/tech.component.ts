@@ -18,11 +18,11 @@ export class TechComponent implements OnInit {
 
     @Input() usuario: Usuario;
 
-    private tecnologias: Tecnologia[];
-    private tecnologiasSelected: Tecnologia[];
-    private tecnologiasSettings: {};
-    private seleccionadas: boolean;
-    private vacio: boolean;
+     tecnologias: Tecnologia[];
+     tecnologiasSelected: Tecnologia[];
+     tecnologiasSettings: {};
+     seleccionadas: boolean;
+     vacio: boolean;
 
     constructor(
         private route: ActivatedRoute,

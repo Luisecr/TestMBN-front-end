@@ -16,7 +16,7 @@
 
           <!--respuestas-->
           <div formArrayName="respuestas">
-            <div *ngFor="let respuesta of myForm.controls.respuestas.controls; let i=index" class="panel panel-primary">
+            <div *ngFor="let respuesta of myForm.controls.respuestas; let i=index" class="panel panel-primary">
               <div class="panel-heading">
                 <span>
                   <strong>{{myForm.value.respuestas[i].tecnologiaId.nombreTecnologia | uppercase}}</strong>

@@ -30,9 +30,9 @@ import { QuestionnaireLoginService } from './services/questionnaire_login.servic
 
 // Plugin
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
-//JSONSchema
+/* //JSONSchema
 import { JsonSchemaFormModule } from 'angular2-json-schema-form';
-
+ */
 @NgModule({
     declarations: [
         AppComponent,
@@ -51,7 +51,7 @@ import { JsonSchemaFormModule } from 'angular2-json-schema-form';
         AppRoutingModule,
         HttpModule,
         AngularMultiSelectModule,
-        JsonSchemaFormModule
+       /*  JsonSchemaFormModule */
     ],
     providers: [
         UsuarioService,
