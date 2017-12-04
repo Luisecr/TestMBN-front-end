@@ -5,6 +5,18 @@ body {
     padding: 70px 0px;
 }
 
+.panel {
+	margin-left:70px;
+}
+
+	@media screen and  (max-width: 980px) {
+			.panel {
+				margin-left:0px;
+			}
+		}
+
+
+
 .range {
     display: table;
     position: relative;
@@ -30,6 +42,10 @@ body {
     height: 25px;
     cursor: pointer;
 }
+
+
+
+
 .range input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none !important;
     -moz-appearance: none !important;
@@ -63,6 +79,8 @@ body {
     border-radius: 0px;
     background-color: rgb(153, 153, 153);
 }
+
+
 
 .range output {
     display: table-cell;

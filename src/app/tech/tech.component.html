@@ -1,20 +1,40 @@
-<!--mat-card>
+	<!--mat-card>
     <div *ngIf="usuario">
         Bienvenido {{usuario.nombreUsuario}}
     </div>
 </mat-card-->
 
-<div class="container">
-    <mat-card>
-        <div class="page-header" div *ngIf="usuario">
-            <h3>
-                Bienvenid@: {{usuario.nombreUsuario | uppercase}}
-            </h3>
-        </div>
-    </mat-card>
+<div class="container opacidad">
+	<div class="row">
+		<div class="col-md-2">
+			&nbsp;
+		</div>
+		<div class="col-md-8">
+				<mat-card>
+					<div class="page-header" div *ngIf="usuario">
+						<h3>
+							Bienvenid@: {{usuario.nombreUsuario}}
+						</h3>
+					</div>
+				</mat-card>
+		</div>
+		<div class="col-md-2">
+			&nbsp;
+		</div>
+	</div>
+	<div class="row">
+	<div class="col-md-2">
+		&nbsp;
+	</div>
+	
+	<div class="col-md-8">
     <br>
     <mat-card *ngIf="!seleccionadas">
-        <mat-card-title style="width: 100%;">Listado de tecnologias</mat-card-title>
+        <mat-card-title style="width: 100%;">Lista de las tecnologías</mat-card-title>
+		<h4>
+			Por favor, dedique un momento a completar esta encuesta, la información que nos proporcione será utilizada para mejorar nuestra empresa.
+		</h4>
+		<br />
         <div style="width: 100%;">
             <angular2-multiselect [data]="tecnologias" [(ngModel)]="tecnologiasSelected" [settings]="tecnologiasSettings" (onSelect)="onItemSelect($event)"
                 (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)">
@@ -25,9 +45,18 @@
                 </c-item>
             </angular2-multiselect>
         </div>
-        <br>
-        <button mat-raised-button color="primary" style="width: 100%;" [disabled]="isEmpty()" (click)="activeCuestionario();">Siguiente</button>
+		<br />
+		<div class="alert alert-danger">	
+			<p>Nota: ¡Asegúrate de seleccionar todas las tecnologías, ya que no podrás volver a realizar la encuesta!</p>
+		</div>
+        <br />
+        <button mat-raised-button color="primary" style="width: 30%;" [disabled]="isEmpty()" (click)="activeCuestionario();">Siguiente</button>
     </mat-card>
+	</div>
+	<div class="col-md-2">
+		&nbsp;
+	</div>
+	</div>
 </div>
 
 <div *ngIf="seleccionadas">
