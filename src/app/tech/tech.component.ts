@@ -6,6 +6,7 @@ import { UsuarioService } from '../services/usuario.service';
 import { Usuario } from '../entities/usuario';
 import { TecnologiaService } from '../services/tecnologia.service';
 import { Tecnologia } from '../entities/tecnologia';
+import { QuestionnaireLoginService } from '../services/questionnaire_login.service';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -29,10 +30,12 @@ export class TechComponent implements OnInit {
         private usuarioService: UsuarioService,
         private location: Location,
         private tecnologiaService: TecnologiaService,
-        private router: Router
+        private router: Router,
+        private questionnaireService: QuestionnaireLoginService
     ) { }
 
     ngOnInit() {
+        this.questionnaireService.showMessage = false;
         this.seleccionadas = false;
         this.vacio = true;
 

@@ -1,5 +1,19 @@
 <div class="container-fluid">
-  <mat-card>
+  <mat-card *ngIf="questionnaireService.showMessage">
+    <div class="alert alert-info" role="alert">
+      <strong>Cuestionario completado!</strong>
+      <br>MBN agradece tu tiempo invertido en esta encuesta, hasta la próxima!
+      <br>
+      <br>
+      <p style="text-align: center;">
+        <button class="mat-raised-button mat-primary" (click)="returnToLogin()">
+          <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+          Volver a pagina principal
+        </button>
+      </p>
+    </div>
+  </mat-card>
+  <mat-card *ngIf="!questionnaireService.showMessage">
     <div class="row">
       <div class="col-xs-12">
         <div>

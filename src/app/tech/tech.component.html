@@ -10,7 +10,7 @@
 			&nbsp;
 		</div>
 		<div class="col-md-8">
-				<mat-card>
+				<mat-card *ngIf="!questionnaireService.showMessage">
 					<div class="page-header" div *ngIf="usuario">
 						<h3>
 							Bienvenid@: {{usuario.nombreUsuario}}

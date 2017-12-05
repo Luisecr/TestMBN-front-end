@@ -19,6 +19,7 @@ export class QuestionnaireComponent implements OnInit {
   @Input() usuarioId: number;
   public myForm: FormGroup; // our form model
   public dataSaved: boolean;
+  public cuestionarioTerminado: boolean;
   public confirmDialogResult: any;
 
   // we will use form builder to simplify our syntax
@@ -44,6 +45,7 @@ export class QuestionnaireComponent implements OnInit {
     }
 
     this.dataSaved = true;
+    //this.questionnaireService.showMessage = false;
   }
 
   /*initQuestionnaire(tecnologia: Tecnologia) {
@@ -116,7 +118,6 @@ export class QuestionnaireComponent implements OnInit {
           this.saveDataRecursive(respuestas, i);
         } else {
           this.questionnaireService.showMessage = true;
-          this.router.navigateByUrl('');
         }
       }).
       catch(respuesta => {
@@ -124,6 +125,10 @@ export class QuestionnaireComponent implements OnInit {
         this.dataSaved = false;
         console.log(this.dataSaved);
       });
+  }
+
+  returnToLogin() {
+    this.router.navigateByUrl('');
   }
 
 }
