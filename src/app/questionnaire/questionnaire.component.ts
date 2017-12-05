@@ -5,6 +5,7 @@ import { Tecnologia } from '../entities/tecnologia';
 import { RespuestaService } from '../services/respuesta.service';
 import { Router } from '@angular/router';
 import { QuestionnaireLoginService } from '../services/questionnaire_login.service';
+import { DialogsService } from '../services/DialogsService';
 
 @Component({
   moduleId: module.id,
@@ -24,7 +25,8 @@ export class QuestionnaireComponent implements OnInit {
     private _fb: FormBuilder,
     private respuestaService: RespuestaService,
     private router: Router,
-    public questionnaireService: QuestionnaireLoginService) { }
+    public questionnaireService: QuestionnaireLoginService,
+    private dialogsService: DialogsService) { }
 
   ngOnInit() {
     // we will initialize our form here
@@ -67,7 +69,7 @@ export class QuestionnaireComponent implements OnInit {
           tecnologiaId: [tecnologia.tecnologiaId],
           nombreTecnologia: [tecnologia.nombreTecnologia]
         }),
-        teorico: [0],
+        teorico: [0, Validators.min(1)],
         practico: [0],
         proyecto: [0]
       }));
@@ -83,10 +85,18 @@ export class QuestionnaireComponent implements OnInit {
   save(respuestas) {
     // call API to save answers
     console.log(respuestas);
-    this.saveDataRecursive(respuestas, 0);
+
+    
   }
 
-
+  public result: any;
+  public openDialog() {
+    console.log("abriendo modal...");
+    this.dialogsService
+      .confirm('Confirm Dialog', 'Are you sure you want to do this?')
+      .subscribe(res => this.result = res);
+  }
+  
   saveDataRecursive(respuestas, i) {
     this.respuestaService.create(respuestas[i]).
       then(respuesta => {

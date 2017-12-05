@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //Routing
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app.routing.module';
-import { MatNativeDateModule } from '@angular/material';
+import { MatNativeDateModule, MatButtonModule, MatDialogModule   } from '@angular/material';
 import 'hammerjs';
 
 // http
@@ -20,6 +20,7 @@ import { HttpModule } from '@angular/http';
 import { LoginComponent } from './login/login.component';
 import { TechComponent } from './tech/tech.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 // Services
 import { UsuarioService } from './services/usuario.service';
@@ -27,6 +28,7 @@ import { TecnologiaService } from './services/tecnologia.service';
 import { CategoriaService } from './services/categoria.service';
 import { RespuestaService} from './services/respuesta.service';
 import { QuestionnaireLoginService } from './services/questionnaire_login.service';
+import { DialogsService } from './services/DialogsService';
 
 // Plugin
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
@@ -38,7 +40,8 @@ import { JsonSchemaFormModule } from 'angular2-json-schema-form';
         AppComponent,
         LoginComponent,
         TechComponent,
-        QuestionnaireComponent
+        QuestionnaireComponent,
+        ConfirmDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -51,6 +54,8 @@ import { JsonSchemaFormModule } from 'angular2-json-schema-form';
         AppRoutingModule,
         HttpModule,
         AngularMultiSelectModule,
+        MatButtonModule,
+        MatDialogModule
        /*  JsonSchemaFormModule */
     ],
     providers: [
@@ -58,7 +63,8 @@ import { JsonSchemaFormModule } from 'angular2-json-schema-form';
         TecnologiaService,
         CategoriaService,
         RespuestaService,
-        QuestionnaireLoginService
+        QuestionnaireLoginService,
+        DialogsService
     ],
     bootstrap: [AppComponent]})
 
