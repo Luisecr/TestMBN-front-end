@@ -31,7 +31,7 @@ export class TechComponent implements OnInit {
         private location: Location,
         private tecnologiaService: TecnologiaService,
         private router: Router,
-        private questionnaireService: QuestionnaireLoginService
+        public questionnaireService: QuestionnaireLoginService
     ) { }
 
     ngOnInit() {

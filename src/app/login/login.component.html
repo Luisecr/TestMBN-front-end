@@ -41,11 +41,13 @@
 <div align="center" class="opacidad">
 	
   <mat-card align="center" style="width: 70%;">
-    <mat-card-title style="width: 100%;">Formulario de </mat-card-title>
+    <!-- <mat-card-title style="width: 100%;">Formulario de </mat-card-title> -->
 	<div class="">
 		<img src="http://www.mbn.com.mx/images/logo/logo.jpg" class="icono">
-	</div>
-	<br />
+  </div>
+  
+  <br />
+  <mat-card-subtitle style="width: 100%;">Encuesta tecnológica 2017</mat-card-subtitle>
     <div class="alert alert-warning" role="alert" [hidden]="!loginError">
       <strong>El correo que ingresaste ya esta registrado!</strong>
     </div>
@@ -53,13 +55,13 @@
     <form [formGroup]="userForm" novalidate>
       <div style="width: 100%;">
         <mat-form-field style="width: 100%;">
-          <input matInput placeholder="Ingrese su Nombre completo:" formControlName="nombreUsuario" required />
+          <input matInput placeholder="Ingrese su nombre completo:" formControlName="nombreUsuario" required />
         </mat-form-field>
       </div>
 	  
       <div>
         <mat-form-field style="width: 100%;">
-          <input matInput placeholder="Ingrese su correo Electronico:" formControlName="correo" email required />
+          <input matInput placeholder="Ingrese su correo electrónico:" formControlName="correo" email required />
           <mat-error *ngIf="userForm.get('correo').value !=''">Escribe un correo valido</mat-error>
         </mat-form-field>
       </div>

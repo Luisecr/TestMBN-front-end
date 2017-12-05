@@ -22,18 +22,21 @@
 			&nbsp;
 		</div-->
 	</div>
-	<div class="row">
+	<div class="row center" >
 	<!--div class="col-md-2">
 		&nbsp;
 	</div-->
 	
-	<div class="col-md-8">
+	<div class="col-md-8 col-lg-8">
     <br>
     <mat-card *ngIf="!seleccionadas">
         <mat-card-title style="width: 100%;">Lista de las tecnologías</mat-card-title>
-		<h4>
-			Por favor, dedique un momento a completar esta encuesta, la información que nos proporcione será utilizada para mejorar nuestra empresa.
-		</h4>
+		<mat-card-subtitle align="center">
+				Por favor, dedique un momento a completar esta encuesta, la información que nos proporcione será utilizada con finalidad de determinar las fortalezas tecnologías que contamos como empresa.
+				<br>
+				Nos facilitará que aun futuro próximo se promuevan certificaciones que contribuyan a tu desarrollo y mejoramiento continuo.
+		</mat-card-subtitle>
+		
 		<br />
         <div style="width: 100%;">
             <angular2-multiselect [data]="tecnologias" [(ngModel)]="tecnologiasSelected" [settings]="tecnologiasSettings" (onSelect)="onItemSelect($event)"
@@ -47,7 +50,7 @@
         </div>
 		<br />
 		<div class="alert alert-danger">	
-			<p>Nota: ¡Asegúrate de seleccionar todas las tecnologías, ya que no podrás volver a realizar la encuesta!</p>
+			<p>Nota: <br>¡Asegúrate de seleccionar todas las tecnologías de tu conocimiento porque solo puedes responder una vez!</p>
 		</div>
         <br />
         <button mat-raised-button color="primary" style="width: 30%;" [disabled]="isEmpty()" (click)="activeCuestionario();">Siguiente</button>
