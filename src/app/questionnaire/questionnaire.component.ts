@@ -5,7 +5,7 @@ import { Tecnologia } from '../entities/tecnologia';
 import { RespuestaService } from '../services/respuesta.service';
 import { Router } from '@angular/router';
 import { QuestionnaireLoginService } from '../services/questionnaire_login.service';
-import { DialogsService } from '../services/DialogsService';
+import { DialogsService } from '../dialogs/dialogs.service';
 
 @Component({
   moduleId: module.id,
@@ -18,7 +18,8 @@ export class QuestionnaireComponent implements OnInit {
   @Input() tecnologias: Tecnologia[];
   @Input() usuarioId: number;
   public myForm: FormGroup; // our form model
-  dataSaved: boolean;
+  public dataSaved: boolean;
+  public confirmDialogResult: any;
 
   // we will use form builder to simplify our syntax
   constructor(
@@ -75,28 +76,38 @@ export class QuestionnaireComponent implements OnInit {
       }));
   }
 
-  /*
-  removeAddress(i: number) {
-    // remove address from the list
-    const control = <FormArray>this.myForm.controls['addresses'];
-    control.removeAt(i);
-  }*/
 
   save(respuestas) {
-    // call API to save answers
-    console.log(respuestas);
+    //console.log(respuestas);
 
-    
+    var respuestasEnCero = false;
+    for (var i = 0; i < respuestas.length; i++) {
+      if (respuestas[i].practico == 0 || respuestas[i].proyecto == 0 || respuestas[i].teorico == 0) {
+        respuestasEnCero = true;
+        break;
+      }
+    }
+
+    if (respuestasEnCero) {
+      this.openDialog(respuestas);
+    } else {
+      this.saveDataRecursive(respuestas, 0);
+    }
+
   }
 
-  public result: any;
-  public openDialog() {
-    console.log("abriendo modal...");
+  //opens dialog for confirm zero values
+  public openDialog(respuestas) {
     this.dialogsService
-      .confirm('Confirm Dialog', 'Are you sure you want to do this?')
-      .subscribe(res => this.result = res);
+      .confirm('Advertencia', 'Algunas de sus respuestas contienen valores con 0%, ¿desea continuar?')
+      .subscribe(res => {
+        if (res == true) {
+          this.saveDataRecursive(respuestas, 0);
+        }
+      });
   }
-  
+
+  // call API to save answers
   saveDataRecursive(respuestas, i) {
     this.respuestaService.create(respuestas[i]).
       then(respuesta => {
