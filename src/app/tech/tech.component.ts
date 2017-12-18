@@ -7,6 +7,7 @@ import { Usuario } from '../entities/usuario';
 import { TecnologiaService } from '../services/tecnologia.service';
 import { Tecnologia } from '../entities/tecnologia';
 import { QuestionnaireLoginService } from '../services/questionnaire_login.service';
+import { DialogsService } from '../dialogs/dialogs.service';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -31,7 +32,8 @@ export class TechComponent implements OnInit {
         private location: Location,
         private tecnologiaService: TecnologiaService,
         private router: Router,
-        public questionnaireService: QuestionnaireLoginService
+        public questionnaireService: QuestionnaireLoginService,
+        private dialogsService: DialogsService
     ) { }
 
     ngOnInit() {
@@ -108,4 +110,21 @@ export class TechComponent implements OnInit {
         this.vacio = true;
         // console.log(items);
     }
+
+    //opens dialog for add new tecnology
+  public addTechDialog() {
+    this.dialogsService
+      .openDialog().subscribe(res => {
+        if (res != '' && res != null && res != undefined) {
+         /* console.log("tiene datos")
+         console.log(res); */
+         this.tecnologiaService.createTecnologia(res).then(res=>{
+            this.getTecnologias();
+         }          
+         );
+        }else{
+           /*  console.log("no tiene datos") */
+        }
+      });
+  }
 }
